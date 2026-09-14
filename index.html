@@ -10,11 +10,11 @@
     <meta property="og:url" content="https://snowball.krakensmp.xyz/" />
     <meta property="og:title" content="Snowball Client" />
     <meta property="og:description" content="A clean, fast Minecraft launcher and client. Instances, performance profiles and a radial in-game menu." />
-    <meta property="og:image" content="https://snowball.krakensmp.xyz/assets/menu-client.png" />
+    <meta property="og:image" content="https://snowball.krakensmp.xyz/assets/menu-client.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#05070a" />
     <link rel="icon" type="image/png" href="assets/logo.png" />
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     <script>document.documentElement.classList.add('js');</script>
   </head>
   <body>
@@ -23,6 +23,7 @@
         <a class="brand" href="index.html"><img src="assets/logo.png" alt="" />SNOWBALL <span>CLIENT</span></a>
         <nav class="nav" aria-label="Main">
           <a href="#features">FEATURES</a>
+          <a href="#try">TRY IT</a>
           <a href="#launcher">LAUNCHER</a>
           <a href="#download">DOWNLOAD</a>
           <a href="#faq">FAQ</a>
@@ -47,7 +48,7 @@
 
           <figure class="window hero-shot reveal">
             <div class="window-bar"><i></i><i></i><i></i><span>In game - Right Shift</span></div>
-            <img src="assets/menu-client.png" alt="The Snowball Client radial menu in game, with the CLIENT category open" width="1920" height="1080" />
+            <img src="assets/menu-client.jpg" alt="The Snowball Client radial menu in game, with the CLIENT category open" width="1920" height="1080" />
           </figure>
         </div>
       </section>
@@ -74,7 +75,7 @@
             </div>
             <figure class="window">
               <div class="window-bar"><i></i><i></i><i></i><span>RENDER category</span></div>
-              <img src="assets/shots/render.jpg" alt="The RENDER category of the radial menu with Zoom enabled" width="980" height="546" loading="lazy" />
+              <img src="assets/menu-render.jpg" alt="The RENDER category of the radial menu with Zoom enabled" width="980" height="546" loading="lazy" />
             </figure>
           </div>
 
@@ -112,23 +113,48 @@
         </div>
       </section>
 
-      <section id="gallery">
-        <div class="wrap">
-          <p class="section-title center">SCREENSHOTS</p>
-          <h2 class="section-heading center">See it in action</h2>
-          <p class="section-lead center">Every category of the radial menu, the HUD and the launcher. Click any screenshot to view it full size.</p>
-          <div class="gallery">
-            <a class="window shot-link reveal" href="assets/shots/fps_boost.jpg"><img src="assets/shots/fps_boost.jpg" alt="FPS BOOST category with performance mods and limiters" width="980" height="546" loading="lazy" /><span>FPS BOOST - performance mods and limiters</span></a>
-            <a class="window shot-link reveal" href="assets/shots/qol.jpg"><img src="assets/shots/qol.jpg" alt="QOL category with Waypoints and Zoom enabled" width="980" height="546" loading="lazy" /><span>QOL - keystrokes, zoom, waypoints</span></a>
-            <a class="window shot-link reveal" href="assets/shots/storage.jpg"><img src="assets/shots/storage.jpg" alt="STORAGE category with screenshots, profiles and packs" width="980" height="546" loading="lazy" /><span>STORAGE - profiles, packs, container tools</span></a>
-            <a class="window shot-link reveal" href="assets/shots/misc.jpg"><img src="assets/shots/misc.jpg" alt="MISC category of the radial menu" width="980" height="546" loading="lazy" /><span>MISC - chat, notifications, server info</span></a>
-            <a class="window shot-link reveal" href="assets/shots/keystrokes.jpg"><img src="assets/shots/keystrokes.jpg" alt="Keystrokes and CPS counter on the in-game HUD" width="980" height="546" loading="lazy" /><span>HUD - keystrokes and CPS</span></a>
-            <a class="window shot-link reveal" href="assets/shots/client.jpg"><img src="assets/shots/client.jpg" alt="CLIENT category with HUD modules" width="980" height="546" loading="lazy" /><span>CLIENT - HUD modules and crosshair</span></a>
-            <a class="window shot-link reveal" href="assets/shots/launcher-instances.png"><img src="assets/shots/launcher-instances.png" alt="Launcher instances page with three instances" width="1184" height="721" loading="lazy" /><span>Launcher - instances</span></a>
-            <a class="window shot-link reveal" href="assets/shots/launcher-mods.png"><img src="assets/shots/launcher-mods.png" alt="Launcher mods page with performance profiles" width="1184" height="721" loading="lazy" /><span>Launcher - mods and performance profiles</span></a>
+      <section id="try">
+        <div class="wrap wide">
+          <p class="section-title center">TRY IT</p>
+          <h2 class="section-heading center">Play with the menu</h2>
+          <p class="section-lead center">This is the Snowball Client menu, running in your browser. Pick a category, switch modules on and off and watch the HUD change. Arrow keys and Enter work too.</p>
+          <div class="demo" id="demo">
+            <div class="demo-in">
+              <div class="demo-scene" aria-hidden="true"></div>
+              <div class="demo-hud" aria-hidden="true">
+                <div class="hud-tl">
+                  <span class="hud-text" data-hud="fps_counter"><span data-v="fps">144</span> FPS</span>
+                  <span class="hud-text" data-hud="ping_display"><span data-v="ping">21</span> ms</span>
+                  <span class="hud-text" data-hud="coordinates">XYZ: 128 / 86 / -342</span>
+                  <span class="hud-text" data-hud="cps_counter"><span data-v="cps">0</span> CPS</span>
+                </div>
+                <div class="hud-tr">
+                  <span class="hud-text" data-hud="clock" data-v="clock">12:00</span>
+                  <span class="hud-text" data-hud="session_timer">Session <span data-v="session">00:00</span></span>
+                  <span class="hud-text" data-hud="server_info">krakensmp.xyz</span>
+                </div>
+                <div class="hud-keys" data-hud="keystrokes">
+                  <span class="hud-key w" data-key="w">W</span>
+                  <span class="hud-key a" data-key="a">A</span>
+                  <span class="hud-key" data-key="s">S</span>
+                  <span class="hud-key" data-key="d">D</span>
+                  <span class="hud-key wide3" data-key="lmb"><span data-v="lcps">0</span> CPS</span>
+                  <span class="hud-key wide3" data-key="rmb"><span data-v="rcps">0</span> CPS</span>
+                  <span class="hud-key space" data-key="space"></span>
+                </div>
+                <div class="hud-text hud-sprint" data-hud="toggle_sprint">[Sprinting (Toggled)]</div>
+                <div class="hud-toast"><b></b><span></span></div>
+              </div>
+              <svg class="wheel" viewBox="-124 -124 248 248" aria-label="Menu categories"></svg>
+              <div class="panel" role="group"></div>
+              <p class="demo-tip" aria-live="polite"></p>
+            </div>
+            <noscript><img src="assets/menu-client.jpg" alt="The Snowball Client radial menu in game" width="1920" height="1080" /></noscript>
           </div>
+          <p class="note demo-note">A live preview of the in-game menu. In Minecraft, press Right Shift to open it.</p>
         </div>
       </section>
+      <script src="demo.js?v=2" defer></script>
 
       <section class="steps-section">
         <div class="wrap">
