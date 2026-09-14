@@ -19,67 +19,86 @@
   ];
 
   const CATS = [
-    { name: 'CLIENT', rows: ['client_hud', 'crosshair', 'fps_counter', 'ping_display', 'coordinates', 'armor_hud', 'interface'] },
-    { name: 'FPS BOOST', rows: ['performance_profile', 'mod_sodium', 'mod_lithium', 'mod_ferritecore', 'mod_entityculling', 'mod_immediatelyfast', 'animation_optimization', 'inactive_fps', 'particle_limiter', 'performance_advisor'] },
-    { name: 'RENDER', rows: ['fullbright', 'freelook', 'zoom', 'fov_settings', 'render_distance', 'entity_distance', 'weather_effects', 'potion_hud'] },
-    { name: 'MISC', rows: ['screenshot_utility', 'clock', 'server_info', 'notifications', 'chat_settings', 'session_timer'] },
-    { name: 'QOL', rows: ['keystrokes', 'toggle_sprint', 'freelook', 'waypoints', 'zoom', 'cps_counter', 'coordinates'] },
+    { name: 'CLIENT', rows: ['client_hud', 'crosshair', 'fps_counter', 'ping_display', 'coordinates', 'direction_hud', 'speed_display', 'combo_counter', 'reach_display', 'memory_usage', 'pack_display', 'armor_hud', 'interface'] },
+    { name: 'FPS BOOST', cards: true, rows: ['fps_boost', 'advanced', 'mod_sodium', 'mod_lithium', 'mod_ferritecore', 'mod_entityculling', 'mod_immediatelyfast', 'animation_optimization', 'inactive_fps', 'particle_limiter', 'performance_advisor'] },
+    { name: 'RENDER', rows: ['fps_boost', 'fullbright', 'zoom', 'freelook', 'third_person', 'time_changer', 'hit_color', 'block_outline', 'no_hurt_shake', 'low_fire', 'fov_settings', 'render_distance', 'entity_distance', 'weather_effects', 'potion_hud'] },
+    { name: 'MISC', rows: ['chat_settings', 'nick_hider', 'screenshot_utility', 'notifications', 'clock', 'server_info', 'session_timer'] },
+    { name: 'QOL', rows: ['keystrokes', 'toggle_sprint', 'zoom', 'freelook', 'snaplook', 'third_person', 'waypoints', 'cps_counter', 'coordinates'] },
     { name: 'STORAGE', rows: ['screenshots', 'config_profiles', 'mod_profiles', 'resource_packs', 'shader_packs', 'container_preview', 'container_search', 'item_counter'] },
   ];
 
-  // [name, description, kind, enabled, has settings, status]  kind: t = toggle, a = opens a screen, p = preset
-  const NEXT_LAUNCH = ' Changes apply on next launch.';
+  // [name, description, kind, enabled, has settings, status, advanced]
+  // kind: t = toggle, a = opens a screen, x = the Advanced row
   const MODULES = {
-    client_hud: ['Client HUD', 'Show or hide all Snowball Client HUD elements', 't', true, false],
-    crosshair: ['Custom Crosshair', 'Change the crosshair shape and colour', 't', false, true],
+    client_hud: ['Client HUD', 'Show or hide all HUD elements', 't', true, false],
+    crosshair: ['Custom Crosshair', 'Your own crosshair style', 't', false, true],
     fps_counter: ['FPS Counter', 'Shows frames per second', 't', true, true],
-    ping_display: ['Ping Counter', 'Shows your latency to the server', 't', false, true],
+    ping_display: ['Ping Counter', 'Shows your ping', 't', false, true],
     coordinates: ['Coordinates', 'Shows your position', 't', false, true],
-    armor_hud: ['Armor HUD', 'Shows worn armour and durability', 't', false, true],
-    interface: ['Menu & Accessibility', 'Scale, contrast, opacity and animation of the menu', 'a'],
-    performance_profile: ['Performance Profile', 'Balanced, FPS Boost, Maximum FPS or Visual Quality presets', 'p'],
-    mod_sodium: ['Sodium', 'Modern rendering engine for much higher FPS.' + NEXT_LAUNCH, 't', false, false, 'NOT INSTALLED'],
-    mod_lithium: ['Lithium', 'Faster game logic and ticking.' + NEXT_LAUNCH, 't', false, false, 'NOT INSTALLED'],
-    mod_ferritecore: ['FerriteCore', 'Lower memory usage.' + NEXT_LAUNCH, 't', false, false, 'NOT INSTALLED'],
-    mod_entityculling: ['Entity Culling', 'Skips rendering hidden entities.' + NEXT_LAUNCH, 't', false, false, 'NOT INSTALLED'],
-    mod_immediatelyfast: ['ImmediatelyFast', 'Faster HUD and text rendering.' + NEXT_LAUNCH, 't', false, false, 'NOT INSTALLED'],
-    animation_optimization: ['Animation Optimization', 'Update animated textures less often', 't', false, true],
-    inactive_fps: ['Background FPS Limit', 'Lower FPS when the game is not focused', 't', true, true],
-    particle_limiter: ['Particle Limiter', 'Reduce particle count for smoother frame times', 't', false, true],
-    performance_advisor: ['Performance Advisor', 'Checks optimisation mods for conflicts', 't', true, true],
-    fullbright: ['Fullbright', 'Makes dark areas easier to see', 't', false, true],
-    freelook: ['Freelook', 'Hold to look around without turning', 't', false, true],
-    zoom: ['Zoom', 'Hold the key to zoom the camera', 't', true, true],
-    fov_settings: ['FOV Settings', 'Custom field of view and dynamic FOV', 't', false, true],
-    render_distance: ['Render Distance', 'Quickly change how far terrain is drawn', 't', false, true],
-    entity_distance: ['Entity Distance', 'Stop drawing far-away entities', 't', false, true],
-    weather_effects: ['Weather Effects', 'Hide rain and snow particles', 't', false, false],
-    potion_hud: ['Potion HUD', 'Shows active effects and their timers', 't', false, true],
-    screenshot_utility: ['Screenshot Utility', 'Quick actions after taking a screenshot', 't', true, true],
-    clock: ['Time Display', 'Shows the real-world time', 't', false, true],
-    server_info: ['Server Information', 'Server address and player count', 't', false, true],
-    notifications: ['Notifications', 'Pop-up cards for client events', 't', true, true],
-    chat_settings: ['Chat Settings', 'Timestamps and chat display options', 't', false, true],
-    session_timer: ['Session Timer', 'Time spent in the current world', 't', false, true],
-    keystrokes: ['Keystrokes', 'Shows movement keys and mouse buttons', 't', true, true],
-    toggle_sprint: ['Toggle Sprint', 'Sprint without holding the key', 't', false, true],
-    waypoints: ['Waypoints', 'Mark locations and see them on screen', 't', true, true],
+    direction_hud: ['Direction HUD', 'Compass for where you face', 't', true, true],
+    speed_display: ['Speed', 'Shows how fast you move', 't', false, true],
+    combo_counter: ['Combo Counter', 'Hits in a row without damage', 't', false, true],
+    reach_display: ['Reach Display', 'Distance of your last hit', 't', false, true],
+    memory_usage: ['Memory Usage', 'Shows game memory use', 't', false, true],
+    pack_display: ['Pack Display', 'Shows your resource pack', 't', false, true],
+    armor_hud: ['Armor HUD', 'Shows armour and durability', 't', false, true],
+    interface: ['Menu & Accessibility', 'Menu size, contrast, motion', 'a'],
+    fps_boost: ['Boost', 'More FPS with one switch', 't', false, true],
+    advanced: ['Advanced', 'Optimisation mods, fine-tuning', 'x'],
+    mod_sodium: ['Faster Rendering', 'Sodium, after restart', 't', false, false, 'MISSING', true],
+    mod_lithium: ['Faster Game Logic', 'Lithium, after restart', 't', false, false, 'MISSING', true],
+    mod_ferritecore: ['Lower Memory Use', 'FerriteCore, after restart', 't', false, false, 'MISSING', true],
+    mod_entityculling: ['Skip Hidden Mobs', 'Entity Culling, after restart', 't', false, false, 'MISSING', true],
+    mod_immediatelyfast: ['Faster HUD', 'ImmediatelyFast, after restart', 't', false, false, 'MISSING', true],
+    animation_optimization: ['Animation Optimization', 'Slower animated textures', 't', false, true, null, true],
+    inactive_fps: ['Background FPS Limit', 'Lower FPS when tabbed out', 't', true, true, null, true],
+    particle_limiter: ['Particle Limiter', 'Fewer particles, smoother', 't', false, true, null, true],
+    performance_advisor: ['Performance Advisor', 'Warns about mod conflicts', 't', true, true, null, true],
+    fullbright: ['Fullbright', 'See clearly in the dark', 't', false, true],
+    zoom: ['Zoom', 'Hold a key to zoom in', 't', true, true],
+    freelook: ['Freelook', 'Look around without turning', 't', false, true],
+    third_person: ['Third-Person Camera', 'Set third-person distance', 't', false, true],
+    time_changer: ['Time Changer', 'Pick the time of day you see', 't', false, true],
+    hit_color: ['Hit Colour', 'Colour of the hit flash', 't', false, true],
+    block_outline: ['Block Outline', 'Colour of the block outline', 't', false, true],
+    no_hurt_shake: ['No Hurt Shake', 'No camera shake when hurt', 't', false, false],
+    low_fire: ['Low Fire', 'Lower the fire overlay', 't', false, true],
+    fov_settings: ['FOV Settings', 'Field of view options', 't', false, true],
+    render_distance: ['Render Distance', 'Change view distance fast', 't', false, true],
+    entity_distance: ['Entity Distance', 'Hide far-away entities', 't', false, true],
+    weather_effects: ['Weather Effects', 'Hide rain and snow', 't', false, false],
+    potion_hud: ['Potion HUD', 'Shows effects and timers', 't', false, true],
+    chat_settings: ['Chat Upgrades', 'Stack spam, mentions, copy', 't', true, true],
+    nick_hider: ['Nick Hider', 'Hide your name in chat', 't', false, true],
+    screenshot_utility: ['Screenshot Utility', 'Actions after a screenshot', 't', true, true],
+    notifications: ['Notifications', 'Pop-up cards for events', 't', true, true],
+    clock: ['Time Display', 'Shows the real time', 't', false, true],
+    server_info: ['Server Information', 'Server address and players', 't', false, true],
+    session_timer: ['Session Timer', 'Time spent in this world', 't', false, true],
+    keystrokes: ['Keystrokes', 'Shows your keys and clicks', 't', true, true],
+    toggle_sprint: ['Toggle Sprint', 'Sprint without holding', 't', false, true],
+    snaplook: ['Snaplook', 'Hold to see yourself', 't', false, true],
+    waypoints: ['Waypoints', 'Mark places on screen', 't', true, true],
     cps_counter: ['CPS Counter', 'Shows clicks per second', 't', false, true],
-    screenshots: ['Screenshots', 'Browse, open and delete your screenshots', 'a'],
-    config_profiles: ['Config Profiles', 'Save and load module setups', 'a'],
-    mod_profiles: ['Mod Profiles', 'Enable, disable and group installed mods', 'a'],
-    resource_packs: ['Resource Packs', 'Open the resource pack selector', 'a'],
-    shader_packs: ['Shader Packs', 'Open Iris shader settings, or the shaderpacks folder', 'a', false, false, 'NO IRIS'],
-    container_preview: ['Container Preview', 'Item grid in shulker box tooltips', 't', true, true],
-    container_search: ['Container Search', 'Find items in chests and inventories', 't', true, true],
-    item_counter: ['Item Counter', 'Total count of the held item in your inventory', 't', false, true],
+    screenshots: ['Screenshots', 'Browse your screenshots', 'a'],
+    config_profiles: ['Config Profiles', 'Save and load setups', 'a'],
+    mod_profiles: ['Mod Profiles', 'Turn mod groups on or off', 'a'],
+    resource_packs: ['Resource Packs', 'Open resource packs', 'a'],
+    shader_packs: ['Shader Packs', 'Open shader settings', 'a', false, false, 'NO IRIS'],
+    container_preview: ['Container Preview', 'See inside shulker boxes', 't', true, true],
+    container_search: ['Container Search', 'Find items in chests', 't', true, true],
+    item_counter: ['Item Counter', 'Count the item you hold', 't', false, true],
   };
-  const PROFILES = ['CUSTOM', 'BALANCED', 'FPS BOOST', 'MAXIMUM FPS', 'VISUAL QUALITY'];
+  const CARDS = [['max_fps', 'MAX FPS', 'Most FPS'], ['balanced', 'BALANCED', 'Best of both'], ['quality', 'QUALITY', 'Best visuals'], ['off', 'OFF', 'Your settings']];
+  const BOOST_FPS = { off: 118, max_fps: 236, balanced: 184, quality: 146 };
+  const MAX_QUERY = 24;
 
   const on = {};
   for (const id in MODULES) on[id] = !!MODULES[id][3];
-  let profile = 0;
+  let preset = 'balanced';
   let current = 0;
+  let query = '';
+  let expanded = false;
   let angle = -30;
   let shown = -30;
   let animating = false;
@@ -91,11 +110,11 @@
     if (parent) parent.appendChild(n);
     return n;
   };
-  const span = (cls, text) => {
-    const s = document.createElement('span');
-    s.className = cls;
-    if (text) s.textContent = text;
-    return s;
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
   };
   const f = (n) => n.toFixed(2);
   const rad = (d) => (d * Math.PI) / 180;
@@ -119,6 +138,8 @@
       }
     });
   };
+  const wrapDeg = (d) => ((((d + 180) % 360) + 360) % 360) - 180;
+  const categoryOf = (id) => CATS.find((c) => c.rows.includes(id)).name;
 
   // ---------- wheel ----------
   const svg = root.querySelector('.wheel');
@@ -138,13 +159,7 @@
 
   const segs = CATS.map((c, i) => {
     const mid = i * 60 - 30;
-    const p = make('path', {
-      d: sector(44, 89, rad(mid - 30), rad(mid + 30), 2.5),
-      class: 'w-seg',
-      tabindex: 0,
-      role: 'button',
-      'aria-label': c.name + ' category',
-    }, svg);
+    const p = make('path', { d: sector(44, 89, rad(mid - 30), rad(mid + 30), 2.5), class: 'w-seg', tabindex: 0, role: 'button', 'aria-label': c.name + ' category' }, svg);
     p.addEventListener('click', () => select(i));
     p.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -179,69 +194,6 @@
     return g;
   });
 
-  // ---------- panel ----------
-  const panel = root.querySelector('.panel');
-  const tip = root.querySelector('.demo-tip');
-
-  function setTip(label, text) {
-    tip.textContent = '';
-    const b = document.createElement('b');
-    b.textContent = label;
-    tip.append(b, text);
-  }
-  const defaultTip = () => setTip('TIP', 'Hover a module to see what it does');
-
-  function toggleCount() {
-    const rows = CATS[current].rows.filter((id) => MODULES[id][2] === 't');
-    return rows.filter((id) => on[id]).length + ' / ' + rows.length;
-  }
-
-  function syncRow(b) {
-    const id = b.dataset.id;
-    if (MODULES[id][2] !== 't') return;
-    b.classList.toggle('on', on[id]);
-    b.setAttribute('aria-checked', String(on[id]));
-  }
-
-  function rowEl(id) {
-    const m = MODULES[id];
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'p-row';
-    b.dataset.id = id;
-    b.appendChild(span('p-name', m[0]));
-    if (m[2] === 'p') b.appendChild(span('p-status', PROFILES[profile]));
-    else if (m[5]) b.appendChild(span('p-status', m[5]));
-    if (m[4]) b.appendChild(span('p-dots'));
-    if (m[2] === 't') {
-      b.setAttribute('role', 'switch');
-      b.appendChild(span('p-switch'));
-    } else {
-      b.appendChild(span('p-chev'));
-    }
-    syncRow(b);
-    b.addEventListener('click', (e) => activate(id, b, !!e.target.closest('.p-dots')));
-    b.addEventListener('mouseenter', () => setTip(m[0], m[1]));
-    b.addEventListener('focus', () => setTip(m[0], m[1]));
-    return b;
-  }
-
-  function renderPanel() {
-    const cat = CATS[current];
-    panel.textContent = '';
-    const head = document.createElement('div');
-    head.className = 'p-head';
-    const icon = make('svg', { viewBox: '0 0 9 9', class: 'p-icon', 'shape-rendering': 'crispEdges', 'aria-hidden': 'true' });
-    pixels(ICONS[current], icon);
-    head.append(icon, span('p-title', cat.name), span('p-count', toggleCount()));
-    const list = document.createElement('div');
-    list.className = 'p-rows';
-    if (!reduce) list.classList.add('swap');
-    cat.rows.forEach((id) => list.appendChild(rowEl(id)));
-    panel.append(head, list);
-    panel.setAttribute('aria-label', cat.name + ' modules');
-  }
-
   // Eases the highlight toward the selected segment, like the client's ~210 ms delta-time animation.
   function animateSel() {
     if (reduce) {
@@ -264,39 +216,238 @@
     requestAnimationFrame(step);
   }
 
+  // ---------- panel ----------
+  const panel = root.querySelector('.panel');
+  const tip = root.querySelector('.demo-tip');
+
+  const head = el('div', 'p-head');
+  const headIcon = make('svg', { viewBox: '0 0 9 9', class: 'p-icon', 'shape-rendering': 'crispEdges', 'aria-hidden': 'true' });
+  const headTitle = el('span', 'p-title');
+  const headCount = el('span', 'p-count');
+  head.append(headIcon, headTitle, headCount);
+
+  const search = el('label', 'p-search');
+  const glass = make('svg', { viewBox: '0 0 10 10', 'aria-hidden': 'true' });
+  make('circle', { cx: 4, cy: 4, r: 3 }, glass);
+  make('path', { d: 'M6.3 6.3 9 9' }, glass);
+  const input = el('input');
+  input.type = 'text';
+  input.placeholder = 'Type to search';
+  input.maxLength = MAX_QUERY;
+  input.setAttribute('aria-label', 'Search modules');
+  input.autocomplete = 'off';
+  input.spellcheck = false;
+  search.append(glass, input);
+
+  const cards = el('div', 'p-cards');
+  const cardEls = CARDS.map(([id, title, blurb]) => {
+    const b = el('button', 'p-card');
+    b.type = 'button';
+    b.append(el('b', '', title), el('small', '', blurb));
+    b.addEventListener('click', () => chooseCard(id));
+    b.addEventListener('mouseenter', () => setTip(title, id === 'off' ? 'Boost off: your own video settings' : blurb + ' - Boost picks the right mods and settings'));
+    cards.appendChild(b);
+    return [id, b];
+  });
+
+  const list = el('div', 'p-rows');
+  list.setAttribute('role', 'list');
+  panel.append(head, search, cards, list);
+
+  function setTip(label, text) {
+    tip.textContent = '';
+    tip.append(el('b', '', label), text);
+  }
+  const defaultTip = () => setTip('TIP', 'Hover a module to see what it does, or type to search');
+
+  const searching = () => query.trim().length > 0;
+
+  function visibleRows() {
+    if (searching()) {
+      const words = query.trim().toLowerCase().split(/\s+/);
+      const seen = new Set();
+      const nameHits = [];
+      const otherHits = [];
+      for (const cat of CATS) {
+        for (const id of cat.rows) {
+          if (seen.has(id) || MODULES[id][2] === 'x') continue;
+          seen.add(id);
+          const name = MODULES[id][0].toLowerCase();
+          const hay = `${name} ${MODULES[id][1].toLowerCase()} ${categoryOf(id).toLowerCase()}`;
+          if (!words.every((w) => hay.includes(w))) continue;
+          (words.every((w) => name.includes(w)) ? nameHits : otherHits).push(id);
+        }
+      }
+      return nameHits.concat(otherHits);
+    }
+    return CATS[current].rows.filter((id) => expanded || !MODULES[id][6]);
+  }
+
+  function statusOf(id) {
+    if (id === 'fps_boost') return on.fps_boost ? CARDS.find((c) => c[0] === preset)[1] : null;
+    if (id === 'advanced') return expanded ? 'HIDE' : 'SHOW';
+    return MODULES[id][5] || null;
+  }
+
+  function syncRow(b) {
+    const id = b.dataset.id;
+    if (MODULES[id][2] !== 't') return;
+    b.classList.toggle('on', on[id]);
+    b.setAttribute('aria-checked', String(on[id]));
+    const status = b.querySelector('.p-status');
+    const text = statusOf(id);
+    status.textContent = text || '';
+    status.hidden = !text;
+  }
+
+  function rowEl(id) {
+    const m = MODULES[id];
+    const b = el('button', 'p-row');
+    b.type = 'button';
+    b.dataset.id = id;
+    const text = el('span', 'p-text');
+    const line = el('span', 'p-line');
+    const status = el('span', 'p-status');
+    line.append(el('span', 'p-name', m[0]), status);
+    text.append(line, el('span', 'p-desc', searching() ? `${categoryOf(id)} - ${m[1]}` : m[1]));
+    b.append(text);
+    if (m[2] === 'x') {
+      b.classList.toggle('expanded', expanded);
+      b.append(el('span', 'p-tri'));
+    } else if (m[2] === 't') {
+      if (m[4]) b.append(el('span', 'p-dots'));
+      b.setAttribute('role', 'switch');
+      b.append(el('span', 'p-switch'));
+      if (m[5] === 'MISSING') b.classList.add('locked');
+    } else {
+      b.append(el('span', 'p-chev'));
+    }
+    const statusText = statusOf(id);
+    status.textContent = statusText || '';
+    status.hidden = !statusText;
+    syncRow(b);
+    b.addEventListener('click', (e) => activate(id, b, !!e.target.closest('.p-dots')));
+    b.addEventListener('mouseenter', () => setTip(m[0], m[1]));
+    b.addEventListener('focus', () => setTip(m[0], m[1]));
+    return b;
+  }
+
+  function updateHead() {
+    headIcon.textContent = '';
+    if (searching()) {
+      headTitle.textContent = 'SEARCH';
+      make('circle', { cx: 4, cy: 4, r: 2.6, fill: 'none', stroke: 'currentColor', 'stroke-width': 1.2 }, headIcon);
+      make('path', { d: 'M6 6 8.5 8.5', stroke: 'currentColor', 'stroke-width': 1.2 }, headIcon);
+      const n = visibleRows().length;
+      headCount.textContent = n + (n === 1 ? ' result' : ' results');
+      headCount.classList.remove('accent');
+    } else {
+      headTitle.textContent = CATS[current].name;
+      pixels(ICONS[current], headIcon);
+      if (CATS[current].cards) {
+        headCount.textContent = fps() + ' FPS';
+        headCount.classList.add('accent');
+      } else {
+        const toggles = visibleRows().filter((id) => MODULES[id][2] === 't');
+        headCount.textContent = toggles.length ? `${toggles.filter((id) => on[id]).length} / ${toggles.length}` : '';
+        headCount.classList.remove('accent');
+      }
+    }
+  }
+
+  function updateCards() {
+    cards.hidden = searching() || !CATS[current].cards;
+    const chosen = on.fps_boost ? preset : 'off';
+    for (const [id, b] of cardEls) {
+      b.classList.toggle('sel', id === chosen);
+      b.setAttribute('aria-pressed', String(id === chosen));
+    }
+  }
+
+  function renderRows(animate) {
+    const rows = visibleRows();
+    list.textContent = '';
+    list.classList.remove('swap');
+    if (animate && !reduce) {
+      void list.offsetWidth;
+      list.classList.add('swap');
+    }
+    if (!rows.length) list.append(el('p', 'p-empty', `Nothing matches "${query.trim()}"`));
+    else rows.forEach((id) => list.appendChild(rowEl(id)));
+    list.scrollTop = 0;
+    updateHead();
+    updateCards();
+  }
+
   function select(i) {
-    if (i === current && panel.firstChild) return;
     const target = i * 60 - 30;
     angle += ((((target - angle) % 360) + 540) % 360) - 180;
     animateSel();
+    const changed = i !== current || searching() || !list.firstChild;
     current = i;
+    if (searching()) {
+      query = '';
+      input.value = '';
+    }
     labels.forEach((l, k) => l.classList.toggle('sel', k === i));
     segs.forEach((s, k) => s.setAttribute('aria-pressed', String(k === i)));
     hubText.textContent = CATS[i].name;
-    renderPanel();
+    if (changed) renderRows(true);
+  }
+
+  function refreshBoostRows() {
+    list.querySelectorAll('.p-row[data-id="fps_boost"]').forEach(syncRow);
+    updateCards();
+    updateHead();
+  }
+
+  function chooseCard(id) {
+    if (id === 'off') {
+      on.fps_boost = false;
+      notify('Boost', 'Off - your own settings');
+    } else {
+      preset = id;
+      on.fps_boost = true;
+      notify('Boost', CARDS.find((c) => c[0] === id)[1]);
+    }
+    refreshBoostRows();
+    slowTick();
   }
 
   function activate(id, b, settings) {
     const m = MODULES[id];
+    if (m[2] === 'x') {
+      expanded = !expanded;
+      renderRows(false);
+      const row = list.querySelector('.p-row[data-id="advanced"]');
+      if (row) row.focus();
+      return;
+    }
     if (settings) {
       setTip(m[0], 'In game this opens its settings');
       return;
     }
-    if (m[2] === 't') {
-      on[id] = !on[id];
-      syncRow(b);
-      panel.querySelector('.p-count').textContent = toggleCount();
-      applyEffects();
-      notify(m[0], on[id] ? 'Enabled' : 'Disabled');
-      if (id === 'zoom' && on[id]) setTip(m[0], 'Hold C to try it');
-      else if (id === 'fullbright' || id === 'client_hud') setTip(m[0], m[1]);
-    } else if (m[2] === 'p') {
-      profile = (profile + 1) % PROFILES.length;
-      b.querySelector('.p-status').textContent = PROFILES[profile];
-      notify(m[0], PROFILES[profile]);
-    } else {
+    if (m[2] !== 't') {
       setTip(m[0], 'In game this opens ' + m[0]);
+      return;
     }
+    if (m[5] === 'MISSING') {
+      setTip(m[0], 'Turn on Boost to install it');
+      notify(m[0], 'Turn on Boost to install it');
+      return;
+    }
+    on[id] = !on[id];
+    syncRow(b);
+    updateHead();
+    applyEffects();
+    notify(m[0], on[id] ? 'Enabled' : 'Disabled');
+    if (id === 'fps_boost') {
+      refreshBoostRows();
+      slowTick();
+    }
+    if (id === 'zoom' && on[id]) setTip(m[0], 'Hold C to try it');
+    else if (id === 'direction_hud' && on[id]) setTip(m[0], 'Move your mouse to turn');
+    else if ((id === 'combo_counter' || id === 'reach_display') && on[id]) setTip(m[0], 'Click the world to land hits');
   }
 
   // ---------- HUD preview ----------
@@ -306,9 +457,18 @@
   const toast = root.querySelector('.hud-toast');
   let toastTimer = 0;
 
+  // Combo and reach: clicking the world (not the menu) lands a "hit".
+  let combo = 0;
+  let lastHit = 0;
+  function combatVisible(id) {
+    const age = Date.now() - lastHit;
+    return id === 'combo_counter' ? combo > 0 && age < 2500 : lastHit > 0 && age < 3000;
+  }
+
   function applyEffects() {
-    hudEls.forEach((el) => {
-      el.hidden = !(on.client_hud && on[el.dataset.hud]);
+    hudEls.forEach((node) => {
+      const enabled = on.client_hud && on[node.dataset.hud];
+      node.hidden = !enabled || (node.dataset.needs === 'combat' && !combatVisible(node.dataset.hud));
     });
     root.classList.toggle('fullbright', on.fullbright);
     if (!on.zoom) root.classList.remove('zooming');
@@ -323,10 +483,42 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
   }
 
+  // Direction HUD strip: the heading follows the mouse across the scene.
+  const strip = root.querySelector('.hud-dir-strip');
+  const DIR_LABELS = ['S', 'SW', 'W', 'NW', 'N', 'NE', 'E', 'SE'];
+  const marks = [];
+  for (let d = 0; d < 360; d += 15) {
+    const label = d % 45 === 0 ? DIR_LABELS[d / 45] : null;
+    const mark = label ? el('span', label.length === 1 ? 'l' : 'l minor', label) : el('i');
+    strip.appendChild(mark);
+    marks.push([d, mark]);
+  }
+  let heading = 90;
+  let headingQueued = false;
+  function drawHeading() {
+    headingQueued = false;
+    for (const [d, mark] of marks) {
+      const offset = wrapDeg(d - heading) * 1.4;
+      mark.hidden = Math.abs(offset) > 68;
+      mark.style.left = `calc(50% + var(--u) * ${offset.toFixed(1)})`;
+    }
+    val('deg').textContent = Math.round(((heading % 360) + 360) % 360) + '°';
+  }
+  root.addEventListener('mousemove', (e) => {
+    const rect = root.getBoundingClientRect();
+    heading = 90 + ((e.clientX - rect.left) / rect.width - 0.5) * 140;
+    if (!headingQueued) {
+      headingQueued = true;
+      requestAnimationFrame(drawHeading);
+    }
+  });
+
   let visible = false;
   const clicks = { lmb: [], rmb: [] };
   const started = Date.now();
   const pad = (n) => String(n).padStart(2, '0');
+  const moving = () => ['w', 'a', 's', 'd'].some((k) => keyEl(k).classList.contains('down'));
+  const fps = () => BOOST_FPS[on.fps_boost ? preset : 'off'];
 
   function tick() {
     if (!visible) return;
@@ -334,16 +526,22 @@
     for (const k in clicks) clicks[k] = clicks[k].filter((t) => now - t < 1000);
     val('lcps').textContent = clicks.lmb.length;
     val('rcps').textContent = clicks.rmb.length;
-    val('cps').textContent = clicks.lmb.length;
+    val('cps').textContent = clicks.lmb.length + ' | ' + clicks.rmb.length;
+    val('speed').textContent = moving() ? (on.toggle_sprint ? 5.61 : 4.32).toFixed(2) : '0.00';
+    applyEffects();
   }
   function slowTick() {
     if (!visible) return;
-    val('fps').textContent = 138 + Math.floor(Math.random() * 28);
+    const frames = fps() + Math.floor(Math.random() * 12) - 6;
+    val('fps').textContent = frames;
+    if (!searching() && CATS[current].cards) headCount.textContent = frames + ' FPS';
     val('ping').textContent = 18 + Math.floor(Math.random() * 6);
     const d = new Date();
     val('clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
     const s = Math.floor((Date.now() - started) / 1000);
     val('session').textContent = pad(Math.floor(s / 60)) + ':' + pad(s % 60);
+    const used = 1300 + Math.floor(Math.random() * 180);
+    val('mem').textContent = `${Math.round((used / 4096) * 100)}%  ${used}/4096 MB`;
   }
   setInterval(tick, 100);
   setInterval(slowTick, 500);
@@ -374,6 +572,13 @@
     if (!k) return;
     clicks[k].push(Date.now());
     keyEl(k).classList.add('down');
+    if (k === 'lmb' && !e.target.closest('.wheel, .panel, .demo-tip')) {
+      const now = Date.now();
+      combo = now - lastHit > 2500 ? 1 : combo + 1;
+      lastHit = now;
+      val('combo').textContent = combo;
+      val('reach').textContent = (2.55 + Math.random() * 0.5).toFixed(2);
+    }
     tick();
   });
   window.addEventListener('mouseup', () => {
@@ -382,15 +587,49 @@
   });
   root.addEventListener('contextmenu', (e) => e.preventDefault());
 
+  // Search: typing anywhere in the demo goes to the search box, like typing in the in-game menu.
+  input.addEventListener('input', () => {
+    query = input.value.slice(0, MAX_QUERY);
+    renderRows(false);
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      if (input.value) {
+        input.value = '';
+        query = '';
+        renderRows(false);
+      } else {
+        input.blur();
+      }
+    } else if (e.key === 'Enter') {
+      const first = list.querySelector('.p-row');
+      if (first) first.click();
+    } else if (e.key === 'ArrowDown') {
+      const first = list.querySelector('.p-row');
+      if (first) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
   root.addEventListener('keydown', (e) => {
+    if (typing(e)) return;
+    if (e.key.length === 1 && e.key !== ' ' && !e.ctrlKey && !e.metaKey && !e.altKey && root.classList.contains('open')) {
+      input.focus();
+      return;
+    }
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
       e.preventDefault();
       const inPanel = panel.contains(document.activeElement);
       select((current + (e.key === 'ArrowRight' ? 1 : 5)) % 6);
-      if (inPanel) panel.querySelector('.p-row').focus();
+      const first = list.querySelector('.p-row');
+      if (inPanel && first) first.focus();
       else segs[current].focus();
     } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      const rows = Array.from(panel.querySelectorAll('.p-row'));
+      const rows = Array.from(list.querySelectorAll('.p-row'));
+      if (!rows.length) return;
       let i = rows.indexOf(document.activeElement);
       i = e.key === 'ArrowDown' ? Math.min(rows.length - 1, i + 1) : Math.max(0, i - 1);
       e.preventDefault();
@@ -403,7 +642,7 @@
   select(0);
   applyEffects();
   defaultTip();
-  slowTick();
+  drawHeading();
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver((entries) => {
@@ -418,5 +657,6 @@
   } else {
     visible = true;
     root.classList.add('open');
+    slowTick();
   }
 })();

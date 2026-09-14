@@ -14,7 +14,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#05070a" />
     <link rel="icon" type="image/png" href="assets/logo.png" />
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="demo.css?v=1" />
     <script>document.documentElement.classList.add('js');</script>
   </head>
   <body>
@@ -36,7 +37,7 @@
       <section class="hero">
         <div class="snow" aria-hidden="true"></div>
         <div class="wrap">
-          <a class="pill" href="#download"><span class="dot"></span>Version 1.0.0 is out - free for Windows</a>
+          <a class="pill" href="#download"><span class="dot"></span>Version 1.1.0 is out - free for Windows</a>
           <img class="hero-logo" src="assets/logo.png" alt="Snowball Client logo" width="112" height="112" />
           <h1>SNOWBALL <span>CLIENT</span></h1>
           <p class="lead">A fast, clean Minecraft: Java Edition launcher and client. Isolated instances, one-click performance mods and a radial in-game menu for everything else.</p>
@@ -55,7 +56,7 @@
 
       <section class="stats-band" aria-label="At a glance">
         <div class="wrap stats">
-          <div><strong>40+</strong><span>modules</span></div>
+          <div><strong>50+</strong><span>modules</span></div>
           <div><strong>6</strong><span>menu categories</span></div>
           <div><strong>4</strong><span>mod loaders</span></div>
           <div><strong>0</strong><span>cheats</span></div>
@@ -75,19 +76,19 @@
             </div>
             <figure class="window">
               <div class="window-bar"><i></i><i></i><i></i><span>RENDER category</span></div>
-              <img src="assets/menu-render.jpg" alt="The RENDER category of the radial menu with Zoom enabled" width="980" height="546" loading="lazy" />
+              <img src="assets/menu-render.jpg" alt="The RENDER category of the radial menu, each module with a short description" width="1010" height="700" loading="lazy" />
             </figure>
           </div>
 
           <div class="grid">
-            <div class="card reveal"><span class="tag">QOL</span><h3>Keystrokes and CPS</h3><p>See movement keys, mouse buttons and clicks per second on your HUD.</p></div>
-            <div class="card reveal"><span class="tag">QOL</span><h3>Zoom and Freelook</h3><p>Smooth hold-to-zoom, and look around without turning your player.</p></div>
-            <div class="card reveal"><span class="tag">QOL</span><h3>Waypoints</h3><p>Save locations per world and server, with on-screen markers and death points.</p></div>
-            <div class="card reveal"><span class="tag">FPS BOOST</span><h3>Performance profiles</h3><p>Balanced, FPS Boost, Maximum FPS or Visual Quality, with Sodium-based mod stacks.</p></div>
-            <div class="card reveal"><span class="tag">RENDER</span><h3>Fullbright, FOV, weather</h3><p>Custom FOV, render and entity distance, and a weather toggle for clearer views.</p></div>
-            <div class="card reveal"><span class="tag">CLIENT</span><h3>HUD you control</h3><p>FPS, ping, coordinates, armour, potions, custom crosshair, all movable and scalable.</p></div>
-            <div class="card reveal"><span class="tag">STORAGE</span><h3>Profiles and screenshots</h3><p>Save module setups, switch mod sets, browse screenshots and resource packs.</p></div>
-            <div class="card reveal"><span class="tag">MISC</span><h3>Chat and notifications</h3><p>Chat timestamps, server info, session timer and low durability warnings.</p></div>
+            <div class="card reveal"><span class="tag">FPS BOOST</span><h3>One-click Boost</h3><p>Pick Max FPS, Balanced or Quality. Boost sets your video options and installs Sodium-based mods, and switching it off restores your settings.</p></div>
+            <div class="card reveal"><span class="tag">CLIENT</span><h3>PvP HUD</h3><p>Direction compass, speed, combo counter, reach display, memory and pack display, all movable and scalable.</p></div>
+            <div class="card reveal"><span class="tag">RENDER</span><h3>Visual tweaks</h3><p>Hit colour, block outline colour, low fire, no hurt shake and a time changer that only changes your sky.</p></div>
+            <div class="card reveal"><span class="tag">MISC</span><h3>Chat upgrades</h3><p>Repeated messages stack as (x3), mentions of your name light up, right-click copies a line, and Nick Hider keeps your name off stream.</p></div>
+            <div class="card reveal"><span class="tag">QOL</span><h3>Camera</h3><p>Hold-to-zoom with a zoom level readout, Freelook, Snaplook and a smooth third-person distance.</p></div>
+            <div class="card reveal"><span class="tag">QOL</span><h3>Keystrokes and waypoints</h3><p>Keys, clicks per second, toggle sprint, and waypoints with on-screen markers.</p></div>
+            <div class="card reveal"><span class="tag">MENU</span><h3>Search everything</h3><p>Start typing in the menu to find any module. Every row explains what it does in a few words.</p></div>
+            <div class="card reveal"><span class="tag">STORAGE</span><h3>Profiles and packs</h3><p>Save module setups, switch mod sets, browse screenshots, peek inside shulker boxes and search chests.</p></div>
           </div>
         </div>
       </section>
@@ -117,7 +118,7 @@
         <div class="wrap wide">
           <p class="section-title center">TRY IT</p>
           <h2 class="section-heading center">Play with the menu</h2>
-          <p class="section-lead center">This is the Snowball Client menu, running in your browser. Pick a category, switch modules on and off and watch the HUD change. Arrow keys and Enter work too.</p>
+          <p class="section-lead center">This is the Snowball Client menu, running in your browser. Pick a category, switch modules on and off and watch the HUD change. Start typing to search.</p>
           <div class="demo" id="demo">
             <div class="demo-in">
               <div class="demo-scene" aria-hidden="true"></div>
@@ -125,13 +126,23 @@
                 <div class="hud-tl">
                   <span class="hud-text" data-hud="fps_counter"><span data-v="fps">144</span> FPS</span>
                   <span class="hud-text" data-hud="ping_display"><span data-v="ping">21</span> ms</span>
-                  <span class="hud-text" data-hud="coordinates">XYZ: 128 / 86 / -342</span>
-                  <span class="hud-text" data-hud="cps_counter"><span data-v="cps">0</span> CPS</span>
+                  <span class="hud-text" data-hud="coordinates">XYZ 118 101 178  WEST</span>
+                  <span class="hud-text" data-hud="cps_counter"><span data-v="cps">0 | 0</span> CPS</span>
+                  <span class="hud-text" data-hud="speed_display"><span data-v="speed">0.00</span> b/s</span>
                 </div>
                 <div class="hud-tr">
                   <span class="hud-text" data-hud="clock" data-v="clock">12:00</span>
                   <span class="hud-text" data-hud="session_timer">Session <span data-v="session">00:00</span></span>
                   <span class="hud-text" data-hud="server_info">krakensmp.xyz</span>
+                  <span class="hud-text" data-hud="memory_usage">Mem <span data-v="mem">34%  1394/4096 MB</span></span>
+                </div>
+                <div class="hud-dir" data-hud="direction_hud">
+                  <div class="hud-dir-strip"></div>
+                  <span class="deg" data-v="deg">90&deg;</span>
+                </div>
+                <div class="hud-center">
+                  <span class="hud-text" data-hud="combo_counter" data-needs="combat"><span data-v="combo">0</span> Combo</span>
+                  <span class="hud-text" data-hud="reach_display" data-needs="combat"><span data-v="reach">0.00</span> blocks</span>
                 </div>
                 <div class="hud-keys" data-hud="keystrokes">
                   <span class="hud-key w" data-key="w">W</span>
@@ -154,7 +165,7 @@
           <p class="note demo-note">A live preview of the in-game menu. In Minecraft, press Right Shift to open it.</p>
         </div>
       </section>
-      <script src="demo.js?v=2" defer></script>
+      <script src="demo.js?v=3" defer></script>
 
       <section class="steps-section">
         <div class="wrap">
@@ -172,31 +183,31 @@
         <div class="wrap">
           <p class="section-title">DOWNLOAD</p>
           <h2 class="section-heading">Get Snowball Client</h2>
-          <p class="section-lead center">Version 1.0.0 for Windows 10 and 11 (64-bit). You need a Microsoft account that owns Minecraft: Java Edition.</p>
+          <p class="section-lead center">Version 1.1.0 for Windows 10 and 11 (64-bit). You need a Microsoft account that owns Minecraft: Java Edition.</p>
           <div class="options">
             <div class="card featured reveal">
               <span class="tag">RECOMMENDED</span>
               <h3>Installer</h3>
               <p>Installs Snowball Client with a Start menu shortcut and uninstaller.</p>
               <p class="size">.exe - 107 MB</p>
-              <a class="btn primary" href="https://github.com/met4a/snowball-website/releases/download/v1.0.0/SnowballClient-1.0.0-setup.exe">Download installer</a>
+              <a class="btn primary" href="https://github.com/met4a/snowball-website/releases/download/v1.1.0/SnowballClient-1.1.0-setup.exe">Download installer</a>
             </div>
             <div class="card reveal">
               <span class="tag">PORTABLE</span>
               <h3>Portable</h3>
               <p>A single file you can run from anywhere. Nothing is installed.</p>
-              <p class="size">.exe - 107 MB</p>
-              <a class="btn" href="https://github.com/met4a/snowball-website/releases/download/v1.0.0/SnowballClient-1.0.0-portable.exe">Download portable</a>
+              <p class="size">.exe - 106 MB</p>
+              <a class="btn" href="https://github.com/met4a/snowball-website/releases/download/v1.1.0/SnowballClient-1.1.0-portable.exe">Download portable</a>
             </div>
           </div>
           <p class="note">Windows may show "Windows protected your PC" because the app is new and not yet code-signed. Choose More info, then Run anyway.</p>
           <details class="checksums">
             <summary>SHA-256 checksums</summary>
             <dl>
-              <dt>SnowballClient-1.0.0-setup.exe</dt>
-              <dd>e960278e75a5647219bbfad6b44c70ea8a2a0502e1a875780a3896fdd2438c44</dd>
-              <dt>SnowballClient-1.0.0-portable.exe</dt>
-              <dd>e96148270e9bc967e118079fc68539b552a6a9a649f2d5b014fe646baa450164</dd>
+              <dt>SnowballClient-1.1.0-setup.exe</dt>
+              <dd>0770e775d32af802702b9d6f47c62109d7d260962639ed61c1b9fe28f5dc17bc</dd>
+              <dt>SnowballClient-1.1.0-portable.exe</dt>
+              <dd>e75f50ae8e522c9616b4287a500e18e9e74b140730f04f41086b1b40196304fc</dd>
             </dl>
           </details>
           <p class="note"><a href="https://github.com/met4a/snowball-website/releases">All releases</a></p>
